@@ -47,6 +47,10 @@ export const router = createBrowserRouter(
                                     index: true,
                                     path: RoutePath.PROFILE,
                                     Component: Profile
+                                },
+                                {
+                                    path: RoutePath.LOGOUT,
+                                    Component: Logout
                                 }
                             ]
                         }
@@ -86,11 +90,7 @@ export const router = createBrowserRouter(
                                 {
                                     path: RoutePath.RESET_PASSWORD,
                                     Component: ResetPassword
-                                },
-                                // {
-                                //     path: RoutePath.LOGOUT,
-                                //     Component: Logout
-                                // }
+                                }
                             ]
                         }
                     ]

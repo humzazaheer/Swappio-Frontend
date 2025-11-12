@@ -37,12 +37,13 @@ const Login = () => {
           credentials: 'include'
         });
 
+        console.log(response);
+
         if (!response.ok) throw new Error("Something went wrong");
 
         const data = await response.json();
         if (response.ok) {
           setUser(data);
-          console.log("login response:", data);
           toast.success("Logged in successfully! 🎉", { id: "login", duration: 3000 });
           setTimeout(() => {
             navigate(`${RoutePath.USER}/${RoutePath.PROFILE}`);

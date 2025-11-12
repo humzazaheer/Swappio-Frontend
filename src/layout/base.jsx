@@ -7,7 +7,10 @@ const Base = () => {
     
   return (
     <>
+
+
       <Header />
+      
       <main className="main-content min-h-screen py-5">
         <Outlet/>
       </main>
