@@ -3,14 +3,14 @@ import { Button } from "@components/Button";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router";
-import { RoutePath } from "@routes/routes";
 import { useAuth } from "@context/AuthContext";
 import { toast } from "react-hot-toast";
 
 
 
 const Profile = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
+
     const navigate = useNavigate();
 
 
@@ -31,7 +31,7 @@ const Profile = () => {
         initialValues: {
             firstName: user?.firstName || "",
             lastName: user?.lastName || "",
-            email:  user?.email || "",
+            email: user?.email || "",
             address: user?.address || "",
             phone: user?.phone || "",
             role: user?.role || "",
@@ -50,11 +50,11 @@ const Profile = () => {
                 });
 
                 if (!response.ok) throw new Error("Something went wrong");
-                toast.success("Profile updated successfully! 🎉", { id: "profile", duration: 5000});
+                toast.success("Profile updated successfully! 🎉", { id: "profile", duration: 5000 });
 
             } catch (err) {
                 toast.error(err.message, { id: "profile" });
-                
+
             }
         }
 
@@ -62,14 +62,14 @@ const Profile = () => {
     });
 
     return (
-        <section id="register-section" className="max-w-[600px] mx-auto mt-5">
+        <section id="profile-section" className="max-w-[800px] mx-auto mt-5">
             <h2 className="text-4xl text-center font-semibold text-slate-700 pb-4">
                 User Profile
             </h2>
-        
-        
-        
-        
+
+
+
+
 
             <form id="login-form" className="p-10" onSubmit={formik.handleSubmit}>
                 <fieldset>
@@ -171,7 +171,7 @@ const Profile = () => {
 
                     </div>
 
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                         <div className="flex space-x-4">
                             <Input
                                 type="radio"
@@ -192,12 +192,12 @@ const Profile = () => {
                                 onChange={formik.handleChange}
                             />
                         </div>
-                        {formik.touched.gender && formik.errors.gender && (
-                            <div className="text-red-500 text-sm mt-1">{formik.errors.role}</div>
-                        )}
+                        {formik.touched.role && formik.errors.gender && (
+                            <div className="text-red-500 text-md mt-1">{formik.errors.role}</div>
+                        )} */}
 
 
-                    </div>
+                    {/* </div> */}
 
 
 

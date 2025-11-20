@@ -10,11 +10,16 @@ import VerifyOTP from "@features/auth/VerifyOTP";
 import Base from "@layout/base";
 import Home from "@pages/Home";
 import Categories from "@pages/Categories";
-import Ads from "@pages/Ads";
+import Ads from "@features/ads/Ads";
 import ProtectedRoute from "@routes/ProtectedRoute";
 import Profile from "@features/user/Profile";
 import UserPage from "@pages/UserPage";
 import Logout from "@features/auth/Logout";
+import AdsByQuery from "@features/ads/AdsByQuery";
+import AdPage from "@pages/AdPage";
+import AdDetail from "@features/ads/AdDetail";
+import MyAds from "@features/user/MyAds";
+import CreateAdForm from "@features/user/CreateAdForm";
 
 
 
@@ -30,11 +35,35 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: RoutePath.CATEGORIES,
-                    element: <ProtectedRoute><Categories /></ProtectedRoute>
+                    element: <Categories />
                 },
+
                 {
-                    path: RoutePath.ADS,
-                    Component: Ads
+                    element: <AdPage />,
+                    children: [
+                        {
+                            path: RoutePath.ADS,
+                            element: <AdPage />,
+                            children: [
+                                {
+                                    index: true,
+                                    element: <Ads />
+                                },
+                                {
+                                    path: `${RoutePath.CATEGORY}/:categoryId`,
+                                    element: <AdsByQuery />
+                                },
+                                {
+                                    path: `:adId`,
+                                    element: <AdDetail />
+                                },
+                                {
+                                    path: RoutePath.CREATE,
+                                    Component: CreateAdForm
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     element: <ProtectedRoute requireAuth={true} />,
@@ -51,7 +80,12 @@ export const router = createBrowserRouter(
                                 {
                                     path: RoutePath.LOGOUT,
                                     Component: Logout
+                                },
+                                {
+                                    path: RoutePath.MYADS,
+                                    Component: MyAds
                                 }
+                                
                             ]
                         }
                     ]

@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <>  
-            <footer className="flex flex-col bg-linear-to-r from-violet-100 to-zinc-50 items-center justify-around w-full py-10 text-sm text-gray-900">
+            <footer className="flex flex-col bg-linear-to-r from-violet-100 to-zinc-50 items-center justify-around w-full py-10 text-md text-gray-900 mt-20">
                 
                 <div className="flex items-center gap-4 mt-8 text-violet-500">
                     <a href="#" className="hover:-translate-y-0.5 transition-all duration-300">

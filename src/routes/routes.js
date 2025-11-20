@@ -11,5 +11,10 @@ export const RoutePath = {
   USER: "/user",
   PROFILE: "profile",
   CATEGORIES: "categories",
-  ADS: "ads"
+  CATEGORY: "category",
+  ADS: "ads",
+  AD: "ad",
+  MYADS:"my-ads",
+  CREATE:"create"
+
 };

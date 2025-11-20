@@ -16,7 +16,7 @@ export const Input = ({
   checked = false,
   parentclasses = true,
   error,
-  options = [], // ✅ new: for select inputs
+  options = [],
   ...props
 }) => {
   const handleChange = (e) => {
@@ -53,7 +53,7 @@ export const Input = ({
           </label>
         )}
         <textarea {...commonProps} value={value || ""} rows={4} />
-        {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+        {error && <div className="text-red-500 text-md mt-1">{error}</div>}
       </>
     );
   }
@@ -65,7 +65,7 @@ export const Input = ({
         {label && (
           <label
             htmlFor={name}
-            className="text-left mb-1 block text-sm font-medium text-gray-700"
+            className="text-left mb-1 block text-md font-medium text-gray-700"
           >
             {label}
           </label>
@@ -78,7 +78,7 @@ export const Input = ({
             </option>
           ))}
         </select>
-        {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+        {error && <div className="text-red-500 text-md mt-1">{error}</div>}
       </>
     );
   }
@@ -97,12 +97,12 @@ export const Input = ({
         {label && (
           <label
             htmlFor={id || name}
-            className="text-sm font-medium text-gray-700"
+            className="text-md font-medium text-gray-700"
           >
             {label}
           </label>
         )}
-        {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+        {error && <div className="text-red-500 text-md mt-1">{error}</div>}
       </div>
     );
   }
@@ -123,13 +123,13 @@ export const Input = ({
       {label && (
         <label
           htmlFor={name}
-          className="text-left mb-1 block text-sm font-medium text-gray-700"
+          className="text-left mb-1 block text-md font-medium text-gray-700"
         >
           {label}
         </label>
       )}
       <input {...inputProps} />
-      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+      {error && <div className="text-red-500 text-md mt-1">{error}</div>}
     </>
   );
 };

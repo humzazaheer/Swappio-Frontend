@@ -191,7 +191,7 @@ const Register = () => {
 
                     </div>
 
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                         <div className="flex space-x-4">
                             <Input
                                 type="radio"
@@ -213,11 +213,11 @@ const Register = () => {
                             />
                         </div>
                         {formik.touched.gender && formik.errors.gender && (
-                            <div className="text-red-500 text-sm mt-1">{formik.errors.role}</div>
+                            <div className="text-red-500 text-md mt-1">{formik.errors.role}</div>
                         )}
 
 
-                    </div>
+                    </div> */}
 
 
 

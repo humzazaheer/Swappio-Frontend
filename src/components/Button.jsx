@@ -17,7 +17,7 @@ export const Button = ({
   download,
   ...props
 }) => {
-  let classes = `flex items-center max-w-fit justify-center gap-5 mt-8 bg-linear-to-r from-violet-600 to-violet-800 hidden md:flex bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition cursor-pointer`;
+  let classes = `flex items-center max-w-fit justify-center gap-5 mt-8 bg-linear-to-r from-violet-600 to-violet-800 hidden md:flex  text-white px-5 py-2 rounded-full text-md font-medium hover:bg-black-700 transition cursor-pointer`;
 
   if (align === "center") {
     classes += " mx-auto";
@@ -26,7 +26,7 @@ export const Button = ({
   }
 
 
-  const finalClass = btnClass || classes;
+  const finalClass = btnClass + classes ;
 
   const handleClick = (e) => {
     if (clickEvent) {

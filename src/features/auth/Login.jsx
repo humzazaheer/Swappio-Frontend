@@ -50,7 +50,9 @@ const Login = () => {
           }, 3000);
         }
       } catch (err) {
+        toast.error(err.message, { id: "login" });
         console.error(err);
+
       }
     }
 
@@ -106,11 +108,13 @@ const Login = () => {
       </form>
       <div className="text-center my-2">
         <span>Forgotten password?
-          <Button
+          {/* <Button
             btnClass={'text-indigo-600 hover:text-indigo-800 ml-2'}
             href={'/auth/forgot-password'}
             btnText={"Forgot password"}
-          />
+          /> */}
+          <a href={'/auth/forgot-password'} class="font-medium  text-violet-600 hover:text-violet-800"> Reset here</a>
+
         </span>
       </div>
     </section>
