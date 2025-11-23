@@ -5,7 +5,7 @@ const ProtectedRoute = ({requireAuth = true, requiredRole}) => {
     if(loading){
         return <div>Loading...</div>
     }
-    if(!isAuthenticated && requireAuth){
+    if (!isAuthenticated && requireAuth) {
         return <Navigate to="/auth/login" replace />
     }
     if (requiredRole && isAuthenticated) {

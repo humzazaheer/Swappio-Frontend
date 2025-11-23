@@ -21,6 +21,10 @@ import AdDetail from "@features/ads/AdDetail";
 import MyAds from "@features/user/MyAds";
 import CreateAdForm from "@features/user/CreateAdForm";
 import AdminDashboard from "@pages/AdminDashboard";
+import CreateAdForm from "@features/ads/CreateAdForm";
+import EditProfile from "@features/user/EditProfile";
+import ProfileContent from "@features/user/ProfileContent";
+import EditAd from "@features/ads/EditAd";
 
 
 
@@ -61,7 +65,11 @@ export const router = createBrowserRouter(
                                 {
                                     path: RoutePath.CREATE,
                                     Component: CreateAdForm
-                                }
+                                },
+                                {
+                                    path: `:adId/edit`,
+                                    element: <EditAd />
+                                },
                             ]
                         }
                     ]
@@ -74,10 +82,20 @@ export const router = createBrowserRouter(
                             Component: UserPage,
                             children: [
                                 {
-                                    index: true,
                                     path: RoutePath.PROFILE,
-                                    Component: Profile
+                                    Component: Profile,
+                                    children: [
+                                        {
+                                            index: true,
+                                            Component: ProfileContent,
+                                        },
+                                        {
+                                            path: RoutePath.EDIT,
+                                            Component: EditProfile
+                                        }
+                                    ]
                                 },
+
                                 {
                                     path: RoutePath.LOGOUT,
                                     Component: Logout

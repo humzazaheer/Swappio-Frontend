@@ -8,6 +8,8 @@ import { useFormik } from "formik";
 import { RoutePath } from "@routes/routes";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
+import Loading from "@components/Loading";
+
 
 const CreateAdForm = () => {
     const { user } = useAuth();
@@ -17,6 +19,17 @@ const CreateAdForm = () => {
 
     const {categories} = useCategories();
     const {locations} = useLocations();
+
+
+    if (!user || !categories || !locations) {
+        return <section className="max-w-[1000px] mx-auto mt-5">
+            <h2 className="text-4xl text-center font-semibold text-slate-700 pb-4">
+                Create An Ad
+            </h2>
+            <Loading />
+        </section>;
+    }
+
 
     const validationSchema = Yup.object({
         title: Yup.string().required("Title is required").min(3, "Title must be at least 3 characters"),
@@ -29,11 +42,11 @@ const CreateAdForm = () => {
             .required("price is required"),
 
         categoryId: Yup.number()
-            .transform((v, o) => Number(o))
+            .transform((o) => Number(o))
             .required(),
 
         locationId: Yup.number()
-            .transform((v, o) => Number(o))
+            .transform((o) => Number(o))
             .required(),
 
 
@@ -45,8 +58,9 @@ const CreateAdForm = () => {
             title: "",
             description: "",
             userId: user.id,
-
-
+            categoryId: "",
+            locationId: "",
+            price: "",
         },
         validationSchema,
         onSubmit: async (values) => {
@@ -82,6 +96,10 @@ const CreateAdForm = () => {
 
 
     });
+
+
+
+
 
     return (
         <section id="register-section" className="max-w-[1000px] mx-auto mt-5">
@@ -192,5 +210,6 @@ const CreateAdForm = () => {
         </section>
     );
 };
+
 
 export default CreateAdForm;

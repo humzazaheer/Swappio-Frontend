@@ -1,29 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { RoutePath } from "@routes/routes";
 
 const useAdsFetchByUser = (userId) => {
-  const [adsByUser, setAdsByUser] = useState([]);
+  const [ads, setAds] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const fetchAds = useCallback(async () => {
 
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/${RoutePath.ADS}?userId=${userId}`, {
+      method: "GET",
+      credentials: "include"
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("No ads found for this user.");
+        return res.json();
+      })
+      .then(data => setAds(data))
+      .catch(() => setAds(null))
+      .finally(() => setLoading(false));
+  }, [refreshKey]);
   useEffect(() => {
-    if (!userId) return;
-
-    const fetchAds = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/${RoutePath.ADS}?userId=${userId}`
-        );
-        if (!res.ok) throw new Error("Failed to fetch Ads");
-        const data = await res.json();
-        setAdsByUser(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
     fetchAds();
-  }, []);
+  }, [fetchAds]);
 
-  return adsByUser;
-};
+  const refreshAds = () => {
+    setRefreshKey((prevKey) => prevKey + 1);
+  };
+  return { ads, refreshAds };
+
+}
 
 export default useAdsFetchByUser;
+
+
+
