@@ -20,6 +20,7 @@ import AdPage from "@pages/AdPage";
 import AdDetail from "@features/ads/AdDetail";
 import MyAds from "@features/user/MyAds";
 import CreateAdForm from "@features/user/CreateAdForm";
+import AdminDashboard from "@pages/AdminDashboard";
 
 
 
@@ -85,7 +86,7 @@ export const router = createBrowserRouter(
                                     path: RoutePath.MYADS,
                                     Component: MyAds
                                 }
-                                
+
                             ]
                         }
                     ]
@@ -126,6 +127,22 @@ export const router = createBrowserRouter(
                                     Component: ResetPassword
                                 }
                             ]
+                        }
+                    ]
+                }
+
+            ]
+        },
+        {
+            element: <ProtectedRoute requireAuth={true} requiredRole={'admin'} />,
+            children: [
+                {
+                    path: RoutePath.ADMIN,
+                    Component: AdminDashboard,
+                    children: [
+                        {
+                            index: true,
+                            Component: AdminDashboard
                         }
                     ]
                 }

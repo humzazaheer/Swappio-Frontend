@@ -36,7 +36,7 @@ const Register = () => {
             password: "",
             address: "",
             phone: "",
-            role: "",
+            role: "user",
             gender: ""
         },
         validationSchema,
@@ -191,7 +191,7 @@ const Register = () => {
 
                     </div>
 
-                    {/* <div className="mb-3">
+                    <div className="mb-3 hidden">
                         <div className="flex space-x-4">
                             <Input
                                 type="radio"
@@ -212,12 +212,12 @@ const Register = () => {
                                 onChange={formik.handleChange}
                             />
                         </div>
-                        {formik.touched.gender && formik.errors.gender && (
+                        {formik.touched.role && formik.errors.role && (
                             <div className="text-red-500 text-md mt-1">{formik.errors.role}</div>
                         )}
 
 
-                    </div> */}
+                    </div>
 
 
 

@@ -15,6 +15,7 @@ export const RoutePath = {
   ADS: "ads",
   AD: "ad",
   MYADS:"my-ads",
-  CREATE:"create"
+  CREATE:"create",
+  ADMIN:"/admin"
 
 };

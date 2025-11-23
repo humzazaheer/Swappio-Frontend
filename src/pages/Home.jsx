@@ -5,7 +5,6 @@ import { Button } from "@components/Button";
 const Home = () => {
     return (
         <>
-            {/* <h1 className="text-center text-5xl my-10">Home Page</h1> */}
 
             <div class="hero-banner p-10">
                 <div class="relative isolate px-6 py-10 lg:px-">

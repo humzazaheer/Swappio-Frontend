@@ -46,7 +46,7 @@ export const ButtonAnimated = ({
 
 
     return href ? (
-        <div class="button-animated rounded-full p-0.5 hover:scale-105 transition duration-300 active:scale-100">
+        <div className="button-animated rounded-full p-0.5 hover:scale-105 transition duration-300 active:scale-100">
 
             <Link to={href} className={finalClass} id={btnId && btnId} target={target} {...(download ? { download } : {})}
                 {...props}>
@@ -54,7 +54,7 @@ export const ButtonAnimated = ({
             </Link>
         </div>
     ) : (
-        <div class="button-animated rounded-full p-0.5 hover:scale-105 transition duration-300 active:scale-100">
+        <div className="button-animated rounded-full p-0.5 hover:scale-105 transition duration-300 active:scale-100">
 
             <button
                 onClick={handleClick}

@@ -1,28 +1,32 @@
-import { useState, useEffect } from "react";
-import { RoutePath } from "@routes/routes";
+import { useState, useEffect, useCallback } from "react";
 
 const useAds = () => {
   const [ads, setAds] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0); 
 
+  const fetchAds = useCallback(async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/ads`, {
+        method: "GET",
+        credentials: "include" 
+      });
+      
+      if (!res.ok) throw new Error("Failed to fetch ads");
+      const data = await res.json();
+      setAds(data);
+    } catch (err) {
+      console.error("Error fetching ads:", err);
+    }
+  }, [refreshKey]); 
   useEffect(() => {
-    const fetchAds = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/${RoutePath.ADS}`, {
-          method: "GET"
-        });
-        if (!res.ok) throw new Error("Failed to fetch Ads");
-        const data = await res.json();
-        setAds(data);
-        console.log(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
     fetchAds();
-  }, []); 
+  }, [fetchAds]); 
 
-  return ads;
+  const refreshAds = () => {
+    setRefreshKey(prevKey => prevKey + 1);
+  };
+
+  return { ads, refreshAds }; 
 };
 
 export default useAds;

@@ -1,26 +1,57 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const useCategories = () => {
+export const useCategories = (id = null) => {
+  
   const [categories, setCategories] = useState([]);
+  
+  const [category, setCategory] = useState(null); 
+  
+  const [refreshKey, setRefreshKey] = useState(0); 
+
+  const fetchData = useCallback(async () => {
+    
+    const isFetchingSingle = id !== null;
+    
+    const endpoint = isFetchingSingle
+      ? `${import.meta.env.VITE_API_BASE_URL}/category/${id}`
+      : `${import.meta.env.VITE_API_BASE_URL}/categories`;
+
+    if (isFetchingSingle && !id) return;
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch ${isFetchingSingle ? 'category' : 'categories'}`);
+      }
+      
+      const data = await res.json();
+      
+      if (isFetchingSingle) {
+        setCategory(data);
+      } else {
+        setCategories(data);
+      }
+      
+    } catch (err) {
+      console.error(`Error fetching data:`, err);
+      if (isFetchingSingle) setCategory(null);
+      else setCategories([]);
+    }
+  }, [id, refreshKey]); 
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/categories`, {
-          method: "GET"
-        });
-        if (!res.ok) throw new Error("Failed to fetch categories");
-        const data = await res.json();
-        setCategories(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+    fetchData();
+  }, [fetchData]);
 
-    fetchCategories();
-  }, []); 
+  const refreshCategories = () => {
+    setRefreshKey((prevKey) => prevKey + 1);
+  };
 
-  return categories;
+  return { categories, category, refreshCategories };
 };
 
 export default useCategories;

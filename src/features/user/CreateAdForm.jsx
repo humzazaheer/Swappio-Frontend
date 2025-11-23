@@ -15,8 +15,8 @@ const CreateAdForm = () => {
 
 
 
-    const categories = useCategories();
-    const locations = useLocations();
+    const {categories} = useCategories();
+    const {locations} = useLocations();
 
     const validationSchema = Yup.object({
         title: Yup.string().required("Title is required").min(3, "Title must be at least 3 characters"),

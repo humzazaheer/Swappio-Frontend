@@ -3,7 +3,7 @@ import { CategoryCard } from "../components/CategoryCard";
 
 
 const Categories = () => {
-    const categories = useCategories();
+    const {categories} = useCategories();
 
 
     if (!categories) return "Loading...";

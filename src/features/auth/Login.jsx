@@ -37,17 +37,16 @@ const Login = () => {
           credentials: 'include'
         });
 
-        console.log(response);
-
-        if (!response.ok) throw new Error("Something went wrong");
+        if (!response.ok) throw new Error(response.statusText);
 
         const data = await response.json();
         if (response.ok) {
           setUser(data);
+          
           toast.success("Logged in successfully! 🎉", { id: "login", duration: 3000 });
           setTimeout(() => {
-            navigate(`${RoutePath.USER}/${RoutePath.PROFILE}`);
-          }, 3000);
+            data?.role === 'admin' ? navigate(RoutePath.ADMIN) : navigate(`${RoutePath.USER}/${RoutePath.PROFILE}`);
+          }, 2000);
         }
       } catch (err) {
         toast.error(err.message, { id: "login" });

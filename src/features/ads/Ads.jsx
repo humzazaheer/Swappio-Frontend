@@ -8,9 +8,9 @@ import { CardSkeleton } from "@components/CardSkeleton";
 
 
 const Ads = () => {
-    const ads = useAds();
+    const {ads} = useAds();
 
-    const categories = useCategories();
+    const {categories} = useCategories();
 
     console.log("ADS FROM HOOK:", ads);
 

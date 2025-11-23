@@ -8,7 +8,7 @@ import useAdsFetchByUser from "@hooks/useAdsFetchByUser";
 const MyAds = () => {
     const { user } = useAuth();
     const ads = useAdsFetchByUser(user.id);
-    console.log(ads);
+    
 
 
     return (
