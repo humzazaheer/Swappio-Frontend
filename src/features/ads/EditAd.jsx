@@ -16,8 +16,8 @@ import useGetAdById from "@hooks/useGetAdById";
 const EditAd = () => {
 
     const ad = useGetAdById();
-    const categories = useCategories();
-    const locations = useLocations();
+    const { categories } = useCategories();
+    const { locations } = useLocations();
     const navigate = useNavigate();
 
 

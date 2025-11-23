@@ -199,7 +199,7 @@ const UsersManager = () => {
                 <tbody className="divide-y divide-gray-100">
                     {displayedData.length > 0 ? displayedData.map(u => (
                         <tr key={u.id} className="hover:bg-gray-50">
-                            <td className="p-4"><div className="font-medium text-gray-800">{u.name}</div><div className="text-xs text-gray-500">{u.email}</div></td>
+                            <td className="p-4"><div className="font-medium text-gray-800">{u.name}</div><div className="text-sm text-gray-700">{u.email}</div></td>
                             <td className="p-4 flex items-center gap-2">{u.role === 'Admin' ? <Shield size={14} className="text-purple-600" /> : <Users size={14} className="text-gray-400" />} {u.role}</td>
                             <td className="p-4"><span className={`text-xs px-2 py-1 rounded-full ${u.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>{u.isActive ? 'Active' : 'Inactive'}</span></td>
                             <td className="p-4 text-right space-x-2">

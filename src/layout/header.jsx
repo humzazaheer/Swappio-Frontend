@@ -47,7 +47,7 @@ const Header = () => {
                         name={"sell"}
 
                     >
-                        <PlusIcon className="mt-[2px]" size={18}/>
+                        <PlusIcon className="mt-[2px]" size={18} />
                         SELL
                     </ButtonAnimated>
 
@@ -57,14 +57,15 @@ const Header = () => {
                                 <DropdownItem href={RoutePath.USER + '/' + RoutePath.PROFILE}>
                                     Profile
                                 </DropdownItem>
-                                <DropdownItem href={RoutePath.USER + '/' + RoutePath.LOGOUT}>
-                                    Logout
-                                </DropdownItem>
+
                                 {user?.role !== 'admin' &&
                                     <DropdownItem href={RoutePath.USER + '/' + RoutePath.MYADS}>
                                         My Ads
                                     </DropdownItem>
                                 }
+                                <DropdownItem href={RoutePath.USER + '/' + RoutePath.LOGOUT}>
+                                    Logout
+                                </DropdownItem>
 
                             </>
                             :

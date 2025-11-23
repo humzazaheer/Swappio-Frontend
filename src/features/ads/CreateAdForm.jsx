@@ -73,7 +73,7 @@ const CreateAdForm = () => {
             };
             const endpoint = `${import.meta.env.VITE_API_BASE_URL}/ad/create`;
             try {
-                toast.loading("Creating your account... ⏳", { id: "newAd", duration: 5000 });
+                toast.loading("Creating your ad... ⏳", { id: "newAd", duration: 5000 });
                 const response = await fetch(endpoint, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -84,7 +84,7 @@ const CreateAdForm = () => {
                 if (!response.ok) throw new Error("Something went wrong", response);
 
                 const data = await response.json();
-                toast.success("Account created successfully!", { id: "newAd", duration: 5000 });
+                toast.success("Ad created successfully!", { id: "newAd", duration: 5000 });
                 navigate(`${RoutePath.USER}/${RoutePath.MYADS}`, {
                     state: { response: data },
                 });

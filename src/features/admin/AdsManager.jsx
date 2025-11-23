@@ -167,8 +167,8 @@ const AdsManager = () => {
     //         description: ad.description,
     //         userId: user.id,
     //         price: ad.price,
-    //         categoryId: String(ad.__category__.id),
-    //         locationId: String(ad.__location__.id),
+    //         categoryId: String(ad.category.id),
+    //         locationId: String(ad.location.id),
     //     });
     // }
 
@@ -207,8 +207,8 @@ const AdsManager = () => {
                         {displayedData.length > 0 ? displayedData.map(ad => (
                             <tr key={ad.id} className="hover:bg-gray-50">
                                 <td className="p-4 font-medium text-gray-800">{ad.title}</td>
-                                <td className="p-4 text-gray-600">{ad.__category__.name}</td>
-                                <td className="p-4 text-gray-600">{ad.__location__.name}</td>
+                                <td className="p-4 text-gray-600">{ad.category.name}</td>
+                                <td className="p-4 text-gray-600">{ad.location.name}</td>
                                 <td className="p-4 ">PKR {ad.price}</td>
                                 <td className="p-4">
                                     <span className={`px-2 py-1 rounded-full text-xs font-bold ${ad.isActive ? 'bg-teal-100 text-teal-800' : 'bg-red-100 text-red-800'}`}>{ad.isActive ? 'Active' : 'Inactive'}</span>

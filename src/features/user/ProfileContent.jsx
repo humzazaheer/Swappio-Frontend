@@ -70,7 +70,7 @@ const ProfileContent = () => {
                         src={
                             // selected now
                             preview ||
-                            `https://placehold.co/500x500/ddd6ff/5d0ec0?text=${user.firstName}`
+                            `https://placehold.co/500x500/ddd6ff/5d0ec0?text=${user.firstName.charAt(0)}`
                         }
                         alt="Profile"
                         className="w-32 h-32 rounded-full object-cover border-2 border-violet-400"
