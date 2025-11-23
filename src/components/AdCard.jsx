@@ -37,7 +37,7 @@ export const AdCard = ({ ad ,csutomClass}) => {
             <div className="relative z-10 bg-white h-full w-full rounded-[10px] flex flex-col items-center justify-center text-center">
                 <img src={`https://placehold.co/500x500/ddd6ff/5d0ec0?text=${ad.title}`} alt="Profile Avatar" className="mb-5 rounded-lg" />
 
-                <p class="text-md text-violet-600 mb-2">{ad.__location__ ? ad.__location__.name : null} | {ad.__category__ ? ad.__category__.name : null}  </p>
+                <p class="text-md text-violet-600 mb-2">{ad.location ? ad.location.name : null} | {ad.category ? ad.category.name : null}  </p>
 
                 <h2 className="text-2xl font-bold text-gray-800 mb-1">{ad.title}</h2>
                 {/* <p className="text-md text-violet-500 font-medium mb-4">Software Developer</p> */}

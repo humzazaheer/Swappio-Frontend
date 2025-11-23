@@ -10,11 +10,13 @@ export const RoutePath = {
   RESET_PASSWORD: "reset-password",
   USER: "/user",
   PROFILE: "profile",
+  EDIT: "edit",
   CATEGORIES: "categories",
   CATEGORY: "category",
   ADS: "ads",
   AD: "ad",
-  MYADS:"my-ads",
-  CREATE:"create"
+  MYADS: "my-ads",
+  CREATE: "create",
+  CLOSE: "close"
 
 };

@@ -8,16 +8,29 @@ import { useFormik } from "formik";
 import { RoutePath } from "@routes/routes";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
+import Loading from "@components/Loading";
+import useGetAdById from "@hooks/useGetAdById";
 
-const CreateAdForm = () => {
-    const { user } = useAuth();
+
+
+const EditAd = () => {
+
+    const ad = useGetAdById();
+    const categories = useCategories();
+    const locations = useLocations();
     const navigate = useNavigate();
 
 
 
-    const categories = useCategories();
-    const locations = useLocations();
 
+    if (!ad || !categories || !locations) {
+        return <section className="max-w-[1000px] mx-auto mt-5">
+            <h2 className="text-4xl text-center font-semibold text-slate-700 pb-4">
+                Edit Ad
+            </h2>
+            <Loading />
+        </section>;
+    }
     const validationSchema = Yup.object({
         title: Yup.string().required("Title is required").min(3, "Title must be at least 3 characters"),
         description: Yup.string().required("Description is required").min(3, "Description must be at least 3 characters"),
@@ -29,24 +42,23 @@ const CreateAdForm = () => {
             .required("price is required"),
 
         categoryId: Yup.number()
-            .transform((v, o) => Number(o))
+            .transform((o) => Number(o))
             .required(),
 
         locationId: Yup.number()
-            .transform((v, o) => Number(o))
+            .transform((o) => Number(o))
             .required(),
-
-
     });
 
-
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            title: "",
-            description: "",
-            userId: user.id,
-
-
+            title: ad?.title || "",
+            description: ad?.description || "",
+            userId: ad?.user?.id || "",
+            categoryId: ad?.category?.id || "",
+            locationId: ad?.location?.id || "",
+            price: ad?.price || "",
         },
         validationSchema,
         onSubmit: async (values) => {
@@ -57,11 +69,11 @@ const CreateAdForm = () => {
                 locationId: Number(values.locationId),
                 userId: Number(values.userId),
             };
-            const endpoint = `${import.meta.env.VITE_API_BASE_URL}/ad/create`;
+            const endpoint = `${import.meta.env.VITE_API_BASE_URL}/ad/update/${ad?.id}`;
             try {
-                toast.loading("Creating your account... ⏳", { id: "newAd", duration: 5000 });
+                toast.loading("Updating your ad... ⏳", { id: "updateAd", duration: 5000 });
                 const response = await fetch(endpoint, {
-                    method: "POST",
+                    method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     credentials: "include",
                     body: JSON.stringify(payload),
@@ -70,23 +82,25 @@ const CreateAdForm = () => {
                 if (!response.ok) throw new Error("Something went wrong", response);
 
                 const data = await response.json();
-                toast.success("Account created successfully!", { id: "newAd", duration: 5000 });
+                toast.success("Ad updated successfully!", { id: "updateAd", duration: 5000 });
                 navigate(`${RoutePath.USER}/${RoutePath.MYADS}`, {
                     state: { response: data },
                 });
             } catch (err) {
-                toast.error(err.message, { id: "newAd" });
-
+                toast.error(err.message, { id: "updateAd" });
             }
         }
-
-
     });
+
+
+
+
+
 
     return (
         <section id="register-section" className="max-w-[1000px] mx-auto mt-5">
             <h2 className="text-4xl text-center font-semibold text-slate-700 pb-4">
-                Create An Ad
+                Edit Ad
             </h2>
 
 
@@ -184,7 +198,7 @@ const CreateAdForm = () => {
                     <Button
                         type={"submit"}
                         name={"create-ad-btn"}
-                        btnText={formik.isSubmitting ? "Adding..." : "Add"}
+                        btnText={formik.isSubmitting ? "Updating..." : "Update"}
 
                     />
                 </form>
@@ -193,4 +207,5 @@ const CreateAdForm = () => {
     );
 };
 
-export default CreateAdForm;
+
+export default EditAd;

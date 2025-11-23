@@ -84,25 +84,29 @@ const AdDetail = () => {
                     <p className="text-2xl  font-medium mt-6">Category</p>
 
                     <p className="text-gray-500 text-lg mt-1">
-                        {ad.__category__ ? ad.__category__.name : null}
+                        {ad.category ? ad.category.name : null}
                     </p>
 
                     <p className="text-2xl  font-medium mt-6">Location</p>
 
                     <p className="text-gray-500 text-lg mt-1">
-                        {ad.__location__ ? ad.__location__.name : null}
+                        {ad.location ? ad.location.name : null}
                     </p>
 
-                    <div className=" mt-10 gap-4">
-                        <p className=" text-2xl font-medium mt-6">Call Now</p>
-
-                        <Button
-                            type={"button"}
-                            href={`tel:${user.phone}`}
-                            btnClass={'text-3xl flex items-center max-w-80 justify-center gap-5 mt-2 mb-5 bg-linear-to-r from-violet-600 to-violet-800 hidden md:flex bg-violet-600 text-white px-8 py-4 rounded-full font-medium hover:bg-violet-700 transition cursor-pointer '}
-                            btnText={ad.__user__ ? ad.__user__.phone : null}
-                        />
-                    </div>
+                    {ad.user ?
+                        <div className=" mt-10 gap-4">
+                            <p className=" text-2xl font-medium mt-6">Call Now</p>
+                            <p className="text-gray-500 font-bold text-lg mt-1">
+                                {ad.user ? ad.user.firstName + " " + ad.user.lastName : null}
+                            </p>
+                            <Button
+                                type={"button"}
+                                href={`tel:${ad.user.phone}`}
+                                btnClass={'text-3xl flex items-center max-w-80 justify-center gap-5  mb-5 bg-linear-to-r from-violet-600 to-violet-800 hidden md:flex bg-violet-600 text-white px-8 py-4 rounded-full font-medium hover:bg-violet-700 transition cursor-pointer '}
+                                btnText={ad.user.phone}
+                            />
+                        </div>
+                        : null}
                 </div>
             </div>
         </div>
